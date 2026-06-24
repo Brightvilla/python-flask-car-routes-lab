@@ -1,155 +1,78 @@
-# Lab: Car Routes Lab
+# Flatiron Cars - Flask Routes Lab
 
----
+A Flask web application for managing car model information with dynamic routing.
 
-## Overview
+## Description
 
-Now it is time for you to build your own routes!
+This application provides a simple API for querying car models in the Flatiron Cars fleet. It demonstrates Flask routing fundamentals including default routes and dynamic URL parameters.
 
-You are building routes for a car company database. You will need to build:
+## Features
 
-- A **default route** introducing the company
-- A **model-specific route** for requesting information on a car model
+- Welcome page at root route
+- Dynamic model lookup by URL parameter
+- Model availability checking against existing inventory
 
----
+## Installation
 
-## Tasks
+```bash
+pipenv install
+pipenv shell
+```
 
-### Task 1: Define the Problem
+## Usage
 
-Build routes for a car company:
+Run the application:
 
-- `/` (default route)
-- `/<model>` (route for a specific car model)
+```bash
+python server/app.py
+```
 
----
+The server starts on `http://127.0.0.1:5000/` in debug mode.
 
-### Task 2: Determine the Design
+### Available Routes
 
-#### App Routes:
+**GET /**
+- Returns welcome message
+- Response: `"Welcome to Flatiron Cars"`
 
-- `GET /`
-- `GET /<model>`
+**GET /<model>**
+- Checks if model exists in fleet
+- Response (if found): `"Flatiron {model} is in our fleet!"`
+- Response (if not found): `"No models called {model} exists in our catalog"`
 
----
+### Examples
 
-### Task 3: Develop the Code
+```bash
+curl http://127.0.0.1:5000/
+# Welcome to Flatiron Cars
 
-- Initialize Flask
-- Set up `/` route
-- Set up `/<model>` route
+curl http://127.0.0.1:5000/Beedle
+# Flatiron Beedle is in our fleet!
 
----
+curl http://127.0.0.1:5000/Tesla
+# No models called Tesla exists in our catalog
+```
 
-### Task 4: Test and Refine
+## Available Models
 
-- Debug and test during development using the provided test suite and Flask instance
+- Beedle
+- Crossroads
+- M2
+- Panique
 
----
+## Testing
 
-### Task 5: Document and Maintain
+Run the test suite:
 
-- Commit as you go, writing meaningful commit messages
-- Push commit history to GitHub periodically and when the lab is complete
+```bash
+pytest --disable-warnings -q
+```
 
----
+## Technologies
 
-## Tools and Resources
+- Python 3.x
+- Flask
 
-- **GitHub Repo**: [https://github.com/learn-co-curriculum/python-flask-car-routes-lab](https://github.com/learn-co-curriculum/python-flask-car-routes-lab)
-- **Flask Quickstart**: [https://flask.palletsprojects.com/en/stable/quickstart/](https://flask.palletsprojects.com/en/stable/quickstart/)
+## License
 
----
-
-## Instructions
-
-### Set Up
-
-Before we begin coding, complete the initial setup:
-
-1. **Fork and Clone**
-   - Go to the GitHub repository link.
-   - Fork the repository to your GitHub account.
-   - Clone the forked repository to your local machine.
-
-2. **Open and Run**
-   - Open the project in VSCode.
-   - Run `pipenv install` to install dependencies.
-   - Run `pipenv shell` to open a Python shell instance.
-
----
-
-## Task 1: Define the Problem
-
-Build the following routes:
-
-- Default Route: `/`
-- Model Route: `/<model>`
-
----
-
-## Task 2: Determine the Design
-
-### App Routes:
-
-- `/`  
-  - Returns: `"Welcome to Flatiron Cars"`
-
-- `/<model>`  
-  - Takes `model` variable from the URL  
-  - Uses the `model` variable to check against an `existing_models` array  
-    - If model exists:  
-      `"Flatiron {model} is in our fleet!"`  
-    - If model doesn't exist:  
-      `"No models called {model} exists in our catalog"`
-
----
-
-## Task 3: Develop, Test, and Refine the Code
-
-1. Create a **feature branch**
-2. Build the following:
-
-### `/` Route
-
-- Returns: `"Welcome to Flatiron Cars"`
-
-### `/<model>` Route
-
-- Accepts a model name from the URL
-- Uses the model variable to check the `existing_models` array
-  - If found: return `"Flatiron {model} is in our fleet!"`
-  - If not found: return `"No models called {model} exists in our catalog"`
-
-3. Push the feature branch and open a PR on GitHub
-4. Merge into `main`
-
----
-
-## Task 4: Document and Maintain
-
-### Best Practices:
-
-- Add comments explaining logic and purpose
-- Clarify code intent for future developers
-- Include a screenshot of completed work in the README
-- Update README to reflect functionality using [https://makeareadme.com](https://makeareadme.com)
-- Delete stale GitHub branches
-- Remove unused or commented-out code
-- Update `.gitignore` to exclude sensitive data (if needed)
-
----
-
-## Submission
-
-Once all tests are passing and code is pushed to the `main` branch:
-
-- Submit your GitHub repo through **Canvas** using **CodeGrade**
-
----
-
-## Grading Criteria
-
-- Application passes all test suites
-- `/` route is created and returns correctly
-- `/<model>` route is created and returns correctly
+MIT
